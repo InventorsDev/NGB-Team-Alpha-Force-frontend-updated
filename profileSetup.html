@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Complete Your Profile – SpeakSafe</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body style="background-color: rgba(187, 216, 244, 0.475);">
+  <div class="profile-container">
+    <!-- Header Section -->
+    <div class="header">
+      <img src="img/LOGO.png" class="head">
+      <h1>Welcome, [User Name] 👋</h1>
+      <p>Please complete your profile details</p>
+    </div>
+
+    <!-- Form Section -->
+    <div class="formborder">
+      <!-- Use a placeholder backend endpoint -->
+      <form action="dashboard.html" method="get" id="profile-form">
+        
+        <label for="address">Home Address</label>
+        <input type="text" id="address" name="address" placeholder="eg. 12 Ikoyi Road, Lagos" required>
+
+        <label for="city">State / City</label>
+        <input type="text" id="city" name="city" placeholder="eg. Lagos" required>
+
+        <label for="emergencyName">Emergency Contact Name</label>
+        <input type="text" id="emergencyName" name="emergencyName" placeholder="eg. Jane Doe" required>
+
+        <label for="emergencyNumber">Emergency Contact Number</label>
+        <input type="tel" id="emergencyNumber" name="emergencyNumber" placeholder="+234..." required>
+
+        <label for="pin">Set 4-digit Panic Cancel PIN</label>
+        <input type="password" id="pin" name="pin" maxlength="4" required>
+
+        <div class="checkbox">
+          <label class="consent">
+            <input type="checkbox" name="consent" required>
+            I consent to emergency dispatch during panic alerts.
+          </label>
+        </div>
+
+        <button type="submit" class="button4">Finish Setup</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById("profile-form");
+    form.addEventListener("submit", (e) => {
+      const pin = document.getElementById("pin").value;
+      if(pin.length !== 4){
+        e.preventDefault();
+        alert("Your Panic Cancel PIN must be 4 digits.");
+      }
+    });
+  </script>
+</body>
+</html>

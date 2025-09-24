@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panic Mode</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: rgba(187, 216, 244, 0.475);
+      margin: 0;
+      padding: 0;
+    }
+
+    .dashboard {
+      margin-top: 100px;
+    }
+
+    .panic-btn {
+      background-color: red;
+      color: white;
+      padding: 20px 40px;
+      font-size: 20px;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    /* Modal */
+    .modal {
+      display: none; /* hidden by default */
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 300px;
+      text-align: center;
+    }
+
+    .modal-content h2 {
+      margin-bottom: 20px;
+    }
+
+    .modal-content button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 14px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .confirm-btn {
+      background-color: red;
+      color: white;
+    }
+
+    .cancel-btn {
+      background-color: gray;
+      color: white;
+    }
+
+    .pin-box {
+      display: none;
+      margin-top: 15px;
+    }
+
+    .pin-box input {
+      padding: 8px;
+      font-size: 16px;
+      width: 100px;
+      text-align: center;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    /* Success screen */
+    .success {
+      display: none;
+      margin-top: 100px;
+    }
+
+    .success h1 {
+      color: green;
+      font-size: 24px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Dashboard -->
+  <div class="dashboard">
+    <h1>Welcome, User</h1>
+    <button class="panic-btn" id="panicBtn">🚨 Panic</button>
+  </div>
+
+  <!-- Popup Modal -->
+  <div class="modal" id="panicModal">
+    <div class="modal-content">
+      <h2>Are you in danger right now?</h2>
+      <button class="confirm-btn" id="confirmAlert">Send Emergency Alert</button>
+      <button class="cancel-btn" id="cancelAlert">Cancel</button>
+
+      <!-- PIN for cancel -->
+      <div class="pin-box" id="pinBox">
+        <p>Enter PIN to cancel:</p>
+        <input type="password" id="pinInput" maxlength="4">
+        <button id="pinSubmit" onclick="history.back()" >Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success screen -->
+  <div class="success" id="successScreen">
+    <h1>✅ Help is on the way!</h1>
+    <p>Your emergency contacts and location have been notified.</p>
+  </div>
+
+  <script>
+    const panicBtn = document.getElementById("panicBtn");
+    const panicModal = document.getElementById("panicModal");
+    const confirmAlert = document.getElementById("confirmAlert");
+    const cancelAlert = document.getElementById("cancelAlert");
+    const pinBox = document.getElementById("pinBox");
+    const pinInput = document.getElementById("pinInput");
+    const pinSubmit = document.getElementById("pinSubmit");
+    const successScreen = document.getElementById("successScreen");
+    const dashboard = document.querySelector(".dashboard");
+
+    // Open modal when panic is pressed
+    panicBtn.addEventListener("click", () => {
+      panicModal.style.display = "flex";
+    });
+
+    // Confirm emergency
+    confirmAlert.addEventListener("click", () => {
+      panicModal.style.display = "none";
+      dashboard.style.display = "none";
+      successScreen.style.display = "block";
+    });
+
+    // Cancel (show PIN box)
+    cancelAlert.addEventListener("click", () => {
+      pinBox.style.display = "block";
+    });
+
+    // Validate PIN (MVP hardcoded as 1234)
+    pinSubmit.addEventListener("click", () => {
+      if (pinInput.value === "1234") {
+        panicModal.style.display = "none";
+        alert("Panic alert cancelled.");
+      } else {
+        alert("Incorrect PIN!");
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Centered Card</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;   /* center horizontally */
+      align-items: center;       /* center vertically */
+      height: 100vh;             /* full screen height */
+      margin: 0;
+      background-color:slategray;
+    }
+
+    .card {
+      width: 300px;              /* set size */
+      padding: 20px;
+      background: white;
+      border-radius: 12px;       /* rounded corners */
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* shadow */
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2 class="success">Successful</h2>
+   <img src="img/f8cb1c087e80b9bb46a899811fc62448 1 (1).png" alt="">
+  </div>
+  <!-- Floating Panic Button -->
+<a href="panic.html" class="panic-btn">🚨</a>
+    <script>
+  setTimeout(function() {
+    window.location.href = "welcomeBack.html"; // go to next page
+  }, 1000); // 1 seconds
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verify Email</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body style="background-color: rgba(187, 216, 244, 0.475);">
+   <header class="top">
+  <a href="form1.html" class="back">&#10094;</a>
+  
+</header>
+  <div class="header">
+    <img src="img/LOGO.png" class="head">
+    <p id="otp-text"></p>
+  </div>
+  
+  <div class="otp-box">
+     <input type="text" maxlength="1" class="otp-input">
+  <input type="number" maxlength="1" class="otp-input">
+  <input type="number" maxlength="1" class="otp-input">
+  <input type="number" maxlength="1" class="otp-input">
+  </div>
+
+  <a href="success card.html" class="button4" type="submit">Verify</a>
+
+    <p class="DONT">didn't receive OTP? <br> <a href="verify.html" class="DONT">Resend OTP</a></p>
+
+  <!-- Floating Panic Button -->
+<a href="panic.html" class="panic-btn">🚨</a>
+  <script>
+    // get query params
+    const params = new URLSearchParams(window.location.search);
+    const email = params.get("email");
+
+    if (email) {
+      const firstChar = email.charAt(0);
+      const domain = email.split("@")[1];
+      document.getElementById("otp-text").innerText =
+        `Please enter the code we just sent to your email ${firstChar}....@${domain}`;
+    } else {
+      document.getElementById("otp-text").innerText =
+        "No email provided!";
+    };
+
+    const inputs = document.querySelectorAll(".otp-input");
+
+inputs.forEach((input, index) => {
+  input.addEventListener("input", () => {
+    if (input.value.length === 1 && index < inputs.length - 1) {
+      inputs[index + 1].focus();  // move to next
+    }
+  });
+
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Backspace" && index > 0 && !input.value) {
+      inputs[index - 1].focus();  // move back if deleting
+    }
+  });
+});
+  </script>
+</body>
+</html>

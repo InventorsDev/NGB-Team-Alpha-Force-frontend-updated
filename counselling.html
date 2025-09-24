@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Counseling</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background-color: rgba(187, 216, 244, 0.475);
+      font-family: 'Montserrat', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0;
+      height: 100vh;
+    }
+
+    .header {
+      text-align: center;
+      padding: 15px;
+    }
+    .head {
+      width: 80px;
+    }
+
+    .chat-window {
+      flex: 1;
+      width: 90%;
+      max-width: 400px;
+      background: white;
+      border-radius: 10px;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+
+    .message {
+      margin: 8px 0;
+      padding: 10px;
+      border-radius: 8px;
+      max-width: 75%;
+    }
+    .bot {
+      background: #e3f2fd;
+      align-self: flex-start;
+    }
+    .user {
+      background: #007bff;
+      color: white;
+      align-self: flex-end;
+    }
+
+    .suggestions {
+      display: flex;
+      gap: 10px;
+      margin: 10px 0;
+      flex-wrap: wrap;
+    }
+    .suggestions button {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 5px;
+      background: #007bff;
+      color: white;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .input-box {
+      display: flex;
+      width: 90%;
+      max-width: 400px;
+      margin-top: 10px;
+    }
+    .input-box input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px 0 0 5px;
+    }
+    .input-box button {
+      padding: 10px 20px;
+      border: none;
+      background: #007bff;
+      color: white;
+      border-radius: 0 5px 5px 0;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <img src="img/LOGO.png" class="head">
+    <h2>Anonymous Counseling</h2>
+  </div>
+<div class="chat-container">
+  <div class="chat-window" id="chat">
+    <div class="message bot">Hi 👋 I’m your safe AI assistant. How can I help you today?</div>
+  </div>
+
+  <div class="suggestions">
+    <button onclick="sendMessage('I need advice')">I need advice</button>
+    <button onclick="sendMessage('I feel unsafe')">I feel unsafe</button>
+    <button onclick="sendMessage('I want to understand my options')">My options</button>
+  </div>
+
+  <div class="input-box">
+    <input type="text" id="userInput" placeholder="Type your message...">
+    <button onclick="handleSend()">Send</button>
+  </div>
+  </div>
+  <!-- Floating Panic Button -->
+<a href="panic.html" class="panic-btn">🚨</a>
+  <script>
+    const chat = document.getElementById("chat");
+
+    function sendMessage(text) {
+      // Add user message
+      let userMsg = document.createElement("div");
+      userMsg.className = "message user";
+      userMsg.textContent = text;
+      chat.appendChild(userMsg);
+
+      // Add bot response (placeholder)
+      setTimeout(() => {
+        let botMsg = document.createElement("div");
+        botMsg.className = "message bot";
+        botMsg.textContent = "Thanks for sharing. I’ll guide you through this. (Placeholder response)";
+        chat.appendChild(botMsg);
+        chat.scrollTop = chat.scrollHeight;
+      }, 800);
+
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    function handleSend() {
+      const input = document.getElementById("userInput");
+      if (input.value.trim() !== "") {
+        sendMessage(input.value);
+        input.value = "";
+      }
+    }
+  </script>
+</body>
+</html>

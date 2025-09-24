@@ -1,0 +1,453 @@
+
+
+
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+body {
+  font-family: 'Montserrat', sans-serif;
+  /* background-color: rgba(187, 216, 244, 0.475); */
+  
+}
+.h1{
+  font-family: Montserrat;
+}
+/* CSS for index.html */
+
+.logo {
+  width: 316px;
+  height: auto;
+  margin: auto;
+}
+
+.container{
+   display: flex;
+  justify-content: center; /* center horizontally */
+  align-items: center;     /* center vertically */
+  height: 100vh;
+ } 
+
+
+
+.screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  padding: 20px;
+  background-color: #ffffff;
+  box-sizing: border-box;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 15px;
+  margin: 0 auto;       /* centers horizontally */
+  max-width: 400px;     /* keeps “phone size” look */
+  width: 100%;          /* but allows shrinking on phones */
+}
+
+@media (max-width: 480px) {
+  .content {
+    max-width: 100%;  /* allow it to fully shrink */
+    padding: 0 10px;
+  }
+}
+
+.text-box h1 {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 10px 0 5px;
+  gap: 15px;
+  font-family: 'Montserrat', san-serif;
+}
+
+.text-box p {
+  font-size: 14px;
+  color: #555;
+  margin: 5px 0 0;
+  font-family: Montserrat;
+  font-weight: 400;
+}
+
+
+
+/* Progress dots + button in one line */
+.bottom-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 320px; /* keeps it centered and neat */
+  margin: 20px auto;
+}
+
+.progress-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background-color: #ccc;
+  border-radius: 50%;
+}
+
+.dot.active {
+  background-color: #000;
+}
+
+/* Button */
+.button {
+  background-color: #2563EB;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  width: 100px;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+.button3 {
+  background-color: #2563EB;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  width: 130px;
+}
+.head{
+  width: 60px;
+  display: block;
+  margin: 0 auto;
+}
+
+ form {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  margin: 20px auto;
+  padding-top: 20px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  font-family: Montserrat;
+}
+
+label {
+  font-weight: 150px;
+  font-family: Montserrat;
+}
+
+.button4 {
+  background-color: #2563EB;
+  color: white;
+  border: none;
+  padding: 12px;
+  text-align: center;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 500px;
+  display: block;
+  margin: 20px auto;
+  font-family: Montserrat;
+}
+.otp-box {
+  display: flex;
+  justify-content: center;  /* center on screen */
+  gap: 12px;                /* spacing between circles */
+  margin: 20px 0;
+}
+
+.otp-box input {
+  width: 50px;
+  height: 50px;
+  border: 2px solid #007bff;
+  border-radius: 50%;       /* makes it circular */
+  text-align: center;
+  font-size: 20px;
+  outline: none;
+}
+
+.header{
+    display: flex;
+    flex-direction: column;
+  margin: 0 auto;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+ font-family: Montserrat;
+}
+
+h1{
+  font-family: Montserrat;
+}
+.forget{
+  text-align: right;
+  display: block;
+  font-size: 14px;
+  text-decoration: none;
+  font-family: Montserrat;
+
+}
+.forget:active {
+  text-decoration:underline;
+  color: #007bff;
+}
+.google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0.5px solid #0f0f0f;
+  border-radius: 50%;
+  padding: 10px 20px;
+  cursor: pointer;
+  
+  font-size: 14px;
+  font-weight: 500;
+  width: 5px;
+  margin: 15px auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.google-btn:hover {
+  background-color: #f7f7f7;
+}
+
+.google-icon {
+  width: 20px;
+ 
+}
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #555;
+  font-size: 14px;
+ font-family: Montserrat;
+  margin: 20px 0;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #ccc;
+  margin: 0 10px;
+}
+.DONT{
+  text-align: center;
+  justify-content: center;
+  font-family: Montserrat;
+
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  margin-right: 40px;
+}
+.back{
+  display: block;
+  text-align: left;
+  color: #000;
+  text-decoration: none;
+  cursor: pointer
+}
+.skip{
+
+  display: block;
+  text-align: right;
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+  }
+  h1{
+    font-family: Mon;
+  }
+  .success{
+    font-family: Montserrat;
+  }
+
+ /* Dashboard Styles */
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.tile {
+  width: 90%;
+  max-width: 350px;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.tile:hover {
+  transform: scale(1.05);
+}
+
+.tile.panic {
+  background-color: #ff4d4d;
+  color: white;
+}
+
+.quick-tip {
+  margin-top: 30px;
+  background-color: #eef6ff;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #333;
+  text-align: center;
+}
+/* Container for the options */
+.options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  margin-top: 40px;
+}
+
+/* Card styling */
+.option-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  width: 80%;
+  max-width: 300px;
+  padding: 30px 20px;
+
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+
+  transition: transform 0.2s ease;
+}
+
+.option-card:hover {
+  transform: translateY(-5px);
+  background: #f0f6ff;
+}
+.resources {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.resource-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 15px 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  text-align: left;
+  transition: 0.3s ease;
+}
+
+.resource-card h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.resource-card p {
+  margin: 0;
+  font-size: 14px;
+  color: #444;
+}
+
+.resource-card:hover {
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+/* .dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+}
+.dashboard-header h1{
+  margin: 0;
+  font-size: ;
+} */
+.header{
+  position: relative;
+}
+.settings-link {
+  position:absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 22px;
+  color: #333;
+  text-decoration: none;
+}
+.panic-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 15px;
+  border-radius: 50%;
+  border: none;
+  background-color: red;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  z-index: 1000;
+  transition: transform 0.2s ease-in-out;
+  text-align: center;
+  text-decoration: none;
+}
+
+.panic-btn:active {
+  transform: scale(0.9);
+}
+.chat-container{
+  padding-bottom: 60px;
+}
+
+
+
+ 

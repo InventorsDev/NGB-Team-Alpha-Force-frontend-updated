@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form 2</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+ <header class="top">
+  <a href="form1.html" class="back">&#10094;</a>
+  
+</header>
+<body style="background-color: rgba(187, 216, 244, 0.475);">
+    <div class="header">
+      <img src="img/LOGO.png" class="head">
+    <h1 class="h1">Create your Account</h1>
+     </div>
+     <div class="formborder">
+       <form action="log_in.html" method="get">
+       <label for="Emergency Contact Name">Emergency Contact Name</label> <br>
+       <input type="text" id="Emergency Contact Name" placeholder="eg. David Stephen" required>
+
+       <label for="Emergency Contact">Emergency Contact</label> <br>
+       <input type="number" id="Last Name" placeholder="+234..." required>
+
+       <label for="password">Password</label> <br>
+       <input type="password" id="password" name="password" placeholder="....." required>
+
+       <label for="Confirm Password">Confirm Password</label> <br>
+       <input type="password" id="confirm-password" name="confirm-password"placeholder="...." required>
+
+      <button type="submit" class="button4">Next</button>
+       </form>
+    </div>
+    
+  <!-- Floating Panic Button -->
+<a href="panic.html" class="panic-btn">🚨</a>
+    <script>
+    const form = document.querySelector("form");
+const password = document.getElementById("password");
+const confirmPassword = document.getElementById("confirm-password");
+
+form.addEventListener("submit", (e) => {
+  if (password.value !== confirmPassword.value) {
+    e.preventDefault(); // stop form submission
+    alert("Passwords do not match!");
+  }
+});
+</script>
+</body>
+</html>
