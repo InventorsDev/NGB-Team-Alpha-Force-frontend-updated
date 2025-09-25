@@ -22,10 +22,10 @@
   <div class="formborder">
     <form action="log_in.html" method="get">
       <label for="Emergency Contact Name">Emergency Contact Name</label><br />
-      <input type="text" id="Emergency Contact Name" name="Emergency Contact Name" placeholder="eg. David Stephen" required />
+      <input type="text" id="emergencyContactName" name="emergencyContactName" placeholder="eg. David Stephen" required />
 
       <label for="Emergency Contact">Emergency Contact</label><br />
-      <input type="number" id="Emergency Contact" name="Emergency Contact" placeholder="+234..." required />
+      <input type="number" id="emergencyContact" name="emergencyContact" placeholder="+234..." required />
 
       <label for="password">Password</label><br />
       <input type="password" id="password" name="password" placeholder="....." required />
@@ -52,15 +52,16 @@
         alert("Passwords do not match!");
       }
       // Save user profile
-  let userProfile = JSON.parse(localStorage.getItem('regStep1')) || {};
-  userProfile = {
-    ...userProfile,
-    EmergencyContactName: document.getElementById('Emergency Contact Name').value,
-    EmergencyContact: document.getElementById('Emergency Contact').value,
-    password: document.getElementById('password').value
-  };
-  localStorage.setItem('regStep2', JSON.stringify(userProfile));
-  window.location.href = 'verify.html';
+ let userProfile = JSON.parse(localStorage.getItem('regStep1')) || {};
+userProfile = {
+  ...userProfile,
+  EmergencyContactName: document.getElementById('emergencyContactName').value,
+  EmergencyContact: document.getElementById('emergencyContact').value,
+  password: document.getElementById('password').value
+};
+localStorage.setItem('userProfile', JSON.stringify(userProfile)); // save as 'userProfile'
+window.location.href = 'verify.html';
+
 });
 
   </script>
