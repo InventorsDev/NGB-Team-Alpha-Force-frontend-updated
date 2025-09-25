@@ -18,13 +18,16 @@
   <div class="formborder">
     <form action="form2.html" method="get">
       <label for="First Name">First Name</label><br />
-      <input type="text" id="First Name" placeholder="eg. John" required />
+      <input type="text" id="firstName" name="firstName" placeholder="eg. John" required />
 
       <label for="Last Name">Last Name</label><br />
-      <input type="text" id="Last Name" placeholder="eg. Doe" required />
+      <input type="text" id="lastName" name="lastName" placeholder="eg. Doe" required />
+
+       <label for="email">Email</label><br />
+      <input type="email" id="email" name="email" placeholder="eg john@gmail.com" required />
 
       <label for="Phone number">Phone number</label><br />
-      <input type="number" id="Phone number" placeholder="eg. +234..." required />
+      <input type="number" id="phone" name="phone" placeholder="eg. +234..." required />
 
       <button type="submit" class="button4">Next</button>
     </form>
@@ -51,18 +54,21 @@
 
 <script>
  // form1.html
-const form = document.querySelector('form');
+const form1 = document.querySelector('form');
+form1.addEventListener('submit', (e) => {
+  e.preventDefault();
+  
+  const userProfile = {
+    Firstname: document.getElementById('firstName').value.trim(),
+    Lastname: document.getElementById('lastName').value.trim(),
+    email: document.getElementById('email').value.trim(),
+    phone: document.getElementById('phone').value.trim()
+  };
 
-form.addEventListener('submit', (e) => {
-  // Save input values before navigating
-  localStorage.setItem('regStep1', JSON.stringify({
-    Firstname: document.getElementById('First Name').value,
-    Lastname: document.getElementById('Last Name').value,
-    email: document.getElementById('Email').value,
-    phone: document.getElementById('Phone number').value,
-  }));
-  // Let the form submit normally to form2.html
+  localStorage.setItem('regStep1', JSON.stringify(userProfile));
+  window.location.href = 'form2.html';
 });
+
 </script>
 
 
