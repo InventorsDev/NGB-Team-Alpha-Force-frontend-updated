@@ -26,7 +26,7 @@
       <label for="Phone number">Phone number</label><br />
       <input type="number" id="Phone number" placeholder="eg. +234..." required />
 
-      <button type="" class="button4">Next</button>
+      <button type="submit" class="button4">Next</button>
     </form>
 
     <!-- Divider -->
@@ -52,16 +52,19 @@
 <script>
  // form1.html
 const form = document.querySelector('form');
+
 form.addEventListener('submit', (e) => {
-  e.preventDefault();
+  // Save input values before navigating
   localStorage.setItem('regStep1', JSON.stringify({
     Firstname: document.getElementById('First Name').value,
     Lastname: document.getElementById('Last Name').value,
     email: document.getElementById('Email').value,
-    phone: document.getElementById('Phone number').value
+    phone: document.getElementById('Phone number').value,
   }));
-  window.location.href = 'form2.html';
+  // Let the form submit normally to form2.html
 });
+</script>
+
 
 </script>
 
