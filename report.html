@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Report Page</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    max-width: 400px;
+    margin: 40px auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 25px 20px;
+  }
+
+  h1 {
+    text-align: center;
+    margin-bottom: 15px;
+  }
+
+  p {
+    text-align: center;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    margin: 12px 0 5px;
+    font-weight: bold;
+  }
+
+  select, textarea, input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+    font-size: 14px;
+    box-sizing: border-box;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+
+  .btn {
+    width: 90%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    background: linear-gradient(to bottom, #FF4C4C, #B22222);
+    color: white;
+    transition: all 0.2s ease;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+  }
+
+  a{
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    display:flex;
+  }
+  .btn:hover {
+    background: linear-gradient(to bottom, #FF6666, #C00000);
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Report</h1>
+  <p>Use this form to report unsafe situations or request urgent help. All reports are confidential.</p>
+
+  <form>
+    <label for="reportType">Type of Report</label>
+    <select id="reportType" required>
+      <option value="">Select type</option>
+      <option value="physical">Physical Abuse</option>
+      <option value="emotional">Emotional Abuse</option>
+      <option value="sexual">Sexual Abuse</option>
+      <option value="unsafe">Unsafe Situation</option>
+      <option value="other">Other</option>
+    </select>
+
+    <label for="location">Location (optional)</label>
+    <input type="text" id="location" placeholder="Enter location or leave blank">
+
+    <label for="description">Description</label>
+    <textarea id="description" placeholder="Describe the situation..." required></textarea>
+
+    <label for="urgency">Urgency Level</label>
+    <select id="urgency" required>
+      <option value="">Select urgency</option>
+      <option value="low">Low</option>
+      <option value="medium">Medium</option>
+      <option value="high">High</option>
+    </select>
+
+    <a href="success-screen.html" type="submit" class="btn">Send Report</a>
+  </form>
+</div>
+
+</body>
+</html>

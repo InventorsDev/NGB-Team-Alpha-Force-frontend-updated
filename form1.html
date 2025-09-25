@@ -1,47 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form 1</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Form 1</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body style="background-color: rgba(187, 216, 244, 0.475);">
-    <div class="header">
-    <img src="img/LOGO.png" class="head">
+
+
+  <!-- Header -->
+  <div class="header">
+    <img src="img/LOGO.png" class="head" />
     <h1 class="h1">Create your Account</h1>
+  </div>
+
+  <!-- Form Section -->
+  <div class="formborder">
+    <form action="form2.html" method="get">
+      <label for="First Name">First Name</label><br />
+      <input type="text" id="First Name" placeholder="eg. John" required />
+
+      <label for="Last Name">Last Name</label><br />
+      <input type="text" id="Last Name" placeholder="eg. Doe" required />
+
+      <label for="Email">Email address</label><br />
+      <input type="email" id="Email" placeholder="eg. @Johndoe.gmail.com" required />
+
+      <label for="Phone number">Phone number</label><br />
+      <input type="number" id="Phone number" placeholder="eg. +234..." required />
+
+      <button type="" class="button4">Next</button>
+    </form>
+
+    <!-- Divider -->
+    <div class="divider">
+      <span>or sign up with</span>
     </div>
-     <div class="formborder">
-       <form  action="form2.html" method="get">
-       <label for="First Name">First Name</label> <br>
-       <input type="text" id="First Name" placeholder="eg. John" required>
+  </div>
 
-       <label for="Last Name">Last Name</label> <br>
-       <input type="text" id="Last Name" placeholder="eg. Doe" required>
+  <!-- Google Sign-In Button -->
+  <div class="google-btn">
+    <img src="img/google icon.png" alt="Google Logo" class="google-icon" />
+    <!-- <span>Google</span> -->
+  </div>
 
-       <label for="Email">Email address</label> <br>
-       <input type="email" id="Email" placeholder="eg. @Johndoe.gmail.com" required>
+  <!-- Already have account link -->
+  <p class="DONT">
+    Already have an account? <a href="welcomeBack.html">Sign in</a>
+  </p>
 
-       <label for="Phone number">Phone number</label> <br>
-       <input type="number" id="Phone number" placeholder="eg. +234..." required>
-       <button type="" class="button4">Next</button>
-
-       </form>
-       <div class="divider">
-  <span>or sign up with</span>
-</div>
-
-    </div>
-      <!-- Google Sign-In Button -->
-<div class="google-btn">
-  <img src="img/google icon.png" alt="Google Logo" class="google-icon">
-  <!-- <span>Google</span> -->
-</div>
-      <p class="DONT">Already have an account? <a href="welcomeBack.html">Sign in</a> </p>
-
-      
   <!-- Floating Panic Button -->
-<a href="panic.html" class="panic-btn">🚨</a>
-    
+  <a href="panic.html" class="panic-btn">🚨</a>
+
 </body>
 </html>
