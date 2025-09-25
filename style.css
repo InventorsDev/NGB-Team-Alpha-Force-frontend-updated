@@ -294,15 +294,15 @@ h1{
 .dashboard {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 20px;
+  align-items: center;   /* ✅ keep tiles centered */
+  gap: 20px;             /* ✅ space between tiles */
   padding: 20px;
 }
 
-.tile {
+.tile, .ussd-tile {
   width: 90%;
   max-width: 350px;
-  padding: 30px;
+  min-height: 150px;
   border-radius: 12px;
   text-align: center;
   font-size: 18px;
@@ -311,9 +311,14 @@ h1{
   background-color: white;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  margin: 0 auto;       /* ✅ keeps tiles centered horizontally */
 }
 
-.tile:hover {
+.tile:hover, .ussd-tile:hover {
   transform: scale(1.05);
 }
 
@@ -322,15 +327,29 @@ h1{
   color: white;
 }
 
-.quick-tip {
-  margin-top: 30px;
-  background-color: #eef6ff;
-  padding: 10px 15px;
-  border-radius: 8px;
-  font-size: 14px;
-  color: #333;
-  text-align: center;
+.ussd-tile {
+  background-color: #f0f8ff;
 }
+
+.ussd-tile h2 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+.ussd-tile p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.ussd-tile a {
+  margin-top: 15px;
+  color: #007bff;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+
 /* Container for the options */
 .options-container {
   display: flex;
@@ -368,40 +387,53 @@ h1{
   transform: translateY(-5px);
   background: #f0f6ff;
 }
-.resources {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 20px;
-  margin-top: 20px;
-}
 
-.resource-card {
-  background-color: white;
-  border-radius: 12px;
-  padding: 15px 20px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  text-align: left;
-  transition: 0.3s ease;
-}
+    .resources {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 20px;
+      margin-top: 20px;
+    }
 
-.resource-card h3 {
-  margin: 0 0 10px;
-  font-size: 18px;
-  font-weight: 600;
-}
+    .resource-card {
+      background-color: white;
+      border-radius: 12px;
+      padding: 15px 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      text-align: left;
+      transition: 0.3s ease;
+    }
 
-.resource-card p {
-  margin: 0;
-  font-size: 14px;
-  color: #444;
-}
+    .resource-card h3 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+    }
 
-.resource-card:hover {
-  background-color: #007bff;
-  color: white;
-  cursor: pointer;
-}
+    /* Hidden content */
+    .resource-card p {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #444;
+      display: none; /* start hidden */
+    }
+
+    /* Expanded state */
+    .resource-card.active {
+      background-color: #007bff;
+      color: white;
+    }
+
+    .resource-card.active p {
+      display: block;
+      color: black;
+    }
+
+    .resource-card:hover {
+      cursor: pointer;
+    }
 /* .dashboard-header {
   display: flex;
   justify-content: space-between;
@@ -449,5 +481,31 @@ h1{
 }
 
 
+ .ussd-box {
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #eef6ff;
+  border-radius: 8px;
+  text-align: center;
+}
 
- 
+.ussd-code {
+  font-size: 22px;
+  font-weight: bold;
+  color: #007bff;
+}
+
+.ussd-steps {
+  list-style: none;
+  padding: 0;
+  margin: 15px 0;
+  text-align: left;
+}
+
+.ussd-steps li {
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+.formborder a{
+  text-decoration: none;
+}

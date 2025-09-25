@@ -17,24 +17,38 @@
   <div class="resources">
     <div class="resource-card">
       <h3>⚠️ Warning Signs of Abuse</h3>
-      <p>Recognize the red flags early and know when to seek help.</p>
+      <p>Abuse can include controlling behavior, isolation from friends/family, threats, or physical harm. 
+      Trust your instincts and seek help early.</p>
     </div>
 
     <div class="resource-card">
       <h3>🛡️ What To Do After an Incident</h3>
-      <p>Steps to take immediately after experiencing abuse or danger.</p>
+      <p>Ensure your safety first, reach out to trusted contacts, seek medical care if needed, and 
+      consider reporting to authorities.</p>
     </div>
 
     <div class="resource-card">
       <h3>🤝 Building a Support System</h3>
-      <p>Learn how to confide in trusted people and build a safety net.</p>
+      <p>Talk to trusted friends, join support groups, and keep emergency contacts updated. 
+      You don’t have to face challenges alone.</p>
     </div>
 
     <div class="resource-card">
       <h3>⚖️ Legal Help in Nigeria</h3>
-      <p>Understand your rights and where to find legal support.</p>
+      <p>You have rights under Nigerian law. Contact NGOs, legal aid services, or police hotlines 
+      specializing in gender-based violence and abuse cases.</p>
     </div>
   </div>
+
+  <script>
+    const cards = document.querySelectorAll(".resource-card");
+
+    cards.forEach(card => {
+      card.addEventListener("click", () => {
+        card.classList.toggle("active");
+      });
+    });
+  </script>
 
 </body>
 </html>
