@@ -23,9 +23,6 @@
       <label for="Last Name">Last Name</label><br />
       <input type="text" id="Last Name" placeholder="eg. Doe" required />
 
-      <label for="Email">Email address</label><br />
-      <input type="email" id="Email" placeholder="eg. @Johndoe.gmail.com" required />
-
       <label for="Phone number">Phone number</label><br />
       <input type="number" id="Phone number" placeholder="eg. +234..." required />
 
@@ -51,6 +48,22 @@
 
   <!-- Floating Panic Button -->
   <a href="panic.html" class="panic-btn">🚨</a>
+
+<script>
+ // form1.html
+const form = document.querySelector('form');
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  localStorage.setItem('regStep1', JSON.stringify({
+    Firstname: document.getElementById('First Name').value,
+    Lastname: document.getElementById('Last Name').value,
+    email: document.getElementById('Email').value,
+    phone: document.getElementById('Phone number').value
+  }));
+  window.location.href = 'form2.html';
+});
+
+</script>
 
 </body>
 </html>

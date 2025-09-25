@@ -20,15 +20,118 @@
 <div class="profile-container">
   <div class="profile-heading">Profile</div>
   <img src="img/Rectangle.png" alt="Profile Picture" class="profile-pic">
-  <div class="profile-name">John Doe</div>
 
-  <button class="profile-button">My Information <span class="arrow">→</span></button>
-  <button class="profile-button">Emergency Contact <span class="arrow">→</span></button>
-  <button class="profile-button">Privacy & Security <span class="arrow">→</span></button>
-  <button class="profile-button">Support <span class="arrow">→</span></button>
-  <button class="profile-button">App Settings <span class="arrow">→</span></button>
-  <button class="profile-button logout-button">Log Out <span class="arrow">→</span></button>
+  <div class="profile-name" id="profileName">John Doe</div>
+
+  <!-- Editable info -->
+  <div class="profile-info">
+    <div>Email: <span id="profileEmail"></span></div>
+    <div>Phone: <span id="profilePhone"></span></div>
+    <div>Emergency Contact: <span id="profileEmergencyName"></span> - <span id="profileEmergencyPhone"></span></div>
+    <div>Address: <span id="profileAddress"></span></div>
+    <div>City: <span id="profileCity"></span></div>
+    <div>Panic PIN: <span id="profilePanicPin"></span></div>
+  </div>
+
+  <!-- Edit buttons -->
+  <button class="profile-button" onclick="editInfo()">Edit My Information <span class="arrow">→</span></button>
+  <button class="profile-button" onclick="editEmergency()">Edit Emergency Contact <span class="arrow">→</span></button>
+  <button class="profile-button logout-button" onclick="logout()">Log Out <span class="arrow">→</span></button>
 </div>
 
+<!-- Hidden edit forms -->
+<div id="editModal" style="display:none; background:#fff; padding:20px; border:1px solid #ccc;">
+  <h3>Edit Information</h3>
+  <form id="editForm">
+    <label>First Name</label>
+    <input type="text" id="editFirstName"><br>
+    <label>Last Name</label>
+    <input type="text" id="editLastName"><br>
+    <label>Email</label>
+    <input type="email" id="editEmail"><br>
+    <label>Phone</label>
+    <input type="text" id="editPhone"><br>
+    <button type="submit">Save</button>
+    <button type="button" onclick="closeModal()">Cancel</button>
+  </form>
+</div>
+
+<div id="editEmergencyModal" style="display:none; background:#fff; padding:20px; border:1px solid #ccc;">
+  <h3>Edit Emergency Contact</h3>
+  <form id="editEmergencyForm">
+    <label>Contact Name</label>
+    <input type="text" id="editEmergencyName"><br>
+    <label>Contact Phone</label>
+    <input type="text" id="editEmergencyPhone"><br>
+    <button type="submit">Save</button>
+    <button type="button" onclick="closeEmergencyModal()">Cancel</button>
+  </form>
+</div>
+<script>
+    // Load profile dat from loacal storage
+window.addEventListener('DOMContentLoaded', () => {
+  const userProfile = JSON.parse(localStorage.getItem('userProfile'));
+  if(userProfile){
+    // Populate profile fields
+    document.getElementById('profileName').innerText = `${userProfile.Firstname} ${userProfile.Lastname}`;
+    document.getElementById('profileEmail').innerText = userProfile.email;
+    document.getElementById('profilePhone').innerText = userProfile.phone;
+    document.getElementById('profileEmergencyName').innerText = userProfile.EmergencyContactName;
+    document.getElementById('profileEmergencyPhone').innerText = userProfile.EmergencyContact;
+    document.getElementById('profileAddress').innerText = userProfile.address;
+    document.getElementById('profileCity').innerText = userProfile.city;
+    document.getElementById('profilePanicPin').innerText = userProfile.panicPin;
+  }
+});
+
+// Open edit modals
+function editInfo() {
+  const userProfile = JSON.parse(localStorage.getItem('userProfile')) || {};
+  document.getElementById('editFirstName').value = userProfile.Firstname || '';
+  document.getElementById('editLastName').value = userProfile.Lastname || '';
+  document.getElementById('editEmail').value = userProfile.email || '';
+  document.getElementById('editPhone').value = userProfile.phone || '';
+  document.getElementById('editModal').style.display = 'block';
+}
+
+function editEmergency() {
+  const userProfile = JSON.parse(localStorage.getItem('userProfile')) || {};
+  document.getElementById('editEmergencyName').value = userProfile.EmergencyContactName || '';
+  document.getElementById('editEmergencyPhone').value = userProfile.EmergencyContact || '';
+  document.getElementById('editEmergencyModal').style.display = 'block';
+}
+
+// Close modals
+function closeModal() { document.getElementById('editModal').style.display = 'none'; }
+function closeEmergencyModal() { document.getElementById('editEmergencyModal').style.display = 'none'; }
+
+// Save edits
+document.getElementById('editForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  let userProfile = JSON.parse(localStorage.getItem('userProfile')) || {};
+  userProfile.Firstname = document.getElementById('editFirstName').value;
+  userProfile.Lastname = document.getElementById('editLastName').value;
+  userProfile.email = document.getElementById('editEmail').value;
+  userProfile.phone = document.getElementById('editPhone').value;
+  localStorage.setItem('userProfile', JSON.stringify(userProfile));
+  location.reload(); // Refresh page to show updated info
+});
+
+document.getElementById('editEmergencyForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  let userProfile = JSON.parse(localStorage.getItem('userProfile')) || {};
+  userProfile.EmergencyContactName = document.getElementById('editEmergencyName').value;
+  userProfile.EmergencyContact = document.getElementById('editEmergencyPhone').value;
+  localStorage.setItem('userProfile', JSON.stringify(userProfile));
+  location.reload();
+});
+
+// Log out
+function logout() {
+  localStorage.removeItem('userProfile');
+  localStorage.removeItem('onboardingComplete');
+  window.location.href = 'index.html';
+}
+</script>
 </body>
 </html>

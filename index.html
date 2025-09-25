@@ -11,9 +11,22 @@
   <img src="img/Frame 231.png" alt="" class="logo">  
   </div>
   <script>
-  setTimeout(function() {
-    window.location.href = "onboarding.html"; // go to next page
-  }, 5000); // 5 seconds
+ window.addEventListener('load', () => {
+  const onboarded = localStorage.getItem('onboardingComplete');
+
+  // If user has already completed onboarding → go to welcomeBack/homepage
+  if (onboarded === 'true') {
+    // Optional: go straight to homepage or welcomeBack.html login
+    window.location.href = 'welcomeBack.html';
+  } else {
+    // If new user, show splash/logo for 5 seconds then go to first onboarding page
+    setTimeout(() => {
+      window.location.href = 'form1.html'; // first form page
+    }, 5000); // splash duration
+  }
+});
+
+
 </script>
 
 </body>

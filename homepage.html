@@ -12,7 +12,7 @@
   <div class="top-bar">
     <img src="img/Rectangle.png" alt="Profile" class="profile-pic">
     <div class="greeting">
-      <h2>Hi John,</h2>
+      <h2 id="homeName">Hi, User</h2>
       <p>Your protection is our priority. Always.</p>
     </div>
     <span class="bell">🔔</span>
@@ -81,5 +81,15 @@
     <a href="profile-page.html">👤 Profile</a>
   </div>
 
+
+  <script>
+window.addEventListener('DOMContentLoaded', () => {
+  const userProfile = JSON.parse(localStorage.getItem('userProfile'));
+  if(userProfile){
+    document.getElementById('homeName').innerText = `Hi ${userProfile.Firstname} ${userProfile.Lastname},`;
+  }
+});
+
+  </script>
 </body>
 </html>

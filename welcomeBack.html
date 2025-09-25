@@ -11,12 +11,12 @@
       <h1 class="h1"> Welcome Back!</h1>
     </div>
     <div class="formborder">
-       <form action="profileSetup.html" method="get">
+       <form action="homepage.html" method="get">
        <label for="Email">Email</label> <br>
-       <input type="email" id="Email" name="email" placeholder="eg.Johndoe25@gmail.com" required>
+       <input type="email" id="Email" name="Email" placeholder="eg.Johndoe25@gmail.com" required>
 
        <label for="password">Password</label> <br>
-       <input type="password" id="password" placeholder="...." required>
+       <input type="password" id="password" name="password" placeholder="...." required>
        
         <p><a href="emailagain.html" class="forget">Forgot Password?</a></p>
 
@@ -40,6 +40,21 @@
     <!-- Floating Panic Button -->
 <a href="panic.html" class="panic-btn">🚨</a>
 
-    
+    <script>
+      const form = document.querySelector('form');
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const storedUser = JSON.parse(localStorage.getItem('userProfile'));
+  const email = document.getElementById('Email').value;
+  const password = document.getElementById('password').value;
+
+  if(storedUser && storedUser.email === email && storedUser.password === password){
+    window.location.href = 'homepage.html';
+  } else {
+    alert('Incorrect email or password');
+  }
+});
+
+    </script>
 </body>
 </html>
