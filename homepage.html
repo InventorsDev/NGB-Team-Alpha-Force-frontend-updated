@@ -23,11 +23,11 @@
     <div class="action-card"><div class="icon" onclick="window.location.href='ussd.html'">
     <img class="icon" src="img/message.png" alt="Speak Out Icon">
   </div><br>USSD Mode</div>
-    <div class="action-card"><div class="icon">
+    <div class="action-card"><div class="icon" onclick="window.location.href='emergencyCall.html'">
     <img src="img/perm_phone_msg.png" class="icon" alt="Speak Out Icon">
-  </div><br>Call Emergency</div>
+  </div><br>Emergency Call</div>
     <div class="action-card"><div class="icon">
-    <img src="img/text_snippet.png" class="icon" alt="Speak Out Icon">
+    <img src="img/text_snippet.png" class="icon" alt="Speak Out Icon" onclick="window.location.href='report.html'">
   </div><br>Quick Report</div>
   </div>
 
@@ -56,22 +56,18 @@
     <div class="agency-row">
       <div class="agency-card"><img src="img/image 12.png"></div>
       <div class="agency-card"><img src="img/Group 46 (1).png"></div>
-      <div class="agency-card"><img src="img/image 14.png"></div>
+      
     </div>
   </div>
 
-  <!-- Reports Snapshot -->
-  <div class="reports">
-    <h3>Reports Snapshot</h3>
-    <div class="report-card">
-      <p><strong>Domestic Violence</strong> <br>2 minutes ago</p>
-      <span class="status pending">Under review</span>
-    </div>
-    <div class="report-card">
-      <p><strong>Robbery attempt</strong> <br>14 days ago</p>
-      <span class="status success">Under review</span>
-    </div>
+  <!-- Reports Snapshot  -->
+<div class="reports">
+  <h3>Reports Snapshot</h3>
+  <div id="reportSnapshotContainer">
+    <!-- JS will populate latest 2-3 reports here -->
   </div>
+  <button class="button4" onclick="window.location.href='all-reports.html'">See All Reports</button>
+</div>
 
   <!-- Bottom Nav -->
   <div class="bottom-nav">
@@ -88,6 +84,35 @@ window.addEventListener('DOMContentLoaded', () => {
   if(userProfile){
     document.getElementById('homeName').innerText = `Hi ${userProfile.Firstname} ${userProfile.Lastname},`;
   }
+});
+
+function formatTimeAgo(timestamp){
+  const now = new Date().getTime();
+  const diff = now - timestamp;
+
+  const minutes = Math.floor(diff / 60000);
+  if(minutes < 60) return `${minutes} minute(s) ago`;
+
+  const hours = Math.floor(minutes / 60);
+  if(hours < 24) return `${hours} hour(s) ago`;
+
+  const days = Math.floor(hours / 24);
+  return `${days} day(s) ago`;
+}
+
+// Populate snapshot
+const snapshotContainer = document.getElementById('reportSnapshotContainer');
+const allReports = JSON.parse(localStorage.getItem('reports')) || [];
+
+// Show latest 2 reports
+const latestReports = allReports.slice(0,2);
+
+latestReports.forEach(report => {
+  const div = document.createElement('div');
+  div.classList.add('report-card');
+  div.innerHTML = `<p><strong>${report.type}</strong><br>${formatTimeAgo(report.timestamp)}</p>
+                   <span class="status">${report.status}</span>`;
+  snapshotContainer.appendChild(div);
 });
 
   </script>

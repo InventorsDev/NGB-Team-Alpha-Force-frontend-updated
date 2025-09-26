@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All Reports</title>
+<link rel="stylesheet" href="style2.css">
+</head>
+<body>
+
+<h1>All Reports</h1>
+<div id="allReportsContainer"></div>
+
+<script>
+const allReportsContainer = document.getElementById('allReportsContainer');
+const reports = JSON.parse(localStorage.getItem('reports')) || [];
+
+function formatTimeAgo(timestamp){
+  const now = new Date().getTime();
+  const diff = now - timestamp;
+
+  const minutes = Math.floor(diff / 60000);
+  if(minutes < 60) return `${minutes} minute(s) ago`;
+
+  const hours = Math.floor(minutes / 60);
+  if(hours < 24) return `${hours} hour(s) ago`;
+
+  const days = Math.floor(hours / 24);
+  return `${days} day(s) ago`;
+}
+
+reports.forEach(report => {
+  const div = document.createElement('div');
+  div.classList.add('report-card');
+  div.innerHTML = `
+    <p><strong>${report.type}</strong></p>
+    <p>${report.details}</p>
+    <p>Submitted: ${formatTimeAgo(report.timestamp)}</p>
+    <p>Status: ${report.status}</p>
+  `;
+  allReportsContainer.appendChild(div);
+});
+</script>
+
+</body>
+</html>

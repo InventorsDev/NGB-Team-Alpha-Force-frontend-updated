@@ -55,8 +55,8 @@
   }
 
   .btn {
-    width: 90%;
-    padding: 10px;
+    width: 100%;
+    padding: 12px;
     border: none;
     border-radius: 8px;
     font-size: 16px;
@@ -65,18 +65,8 @@
     background: linear-gradient(to bottom, #FF4C4C, #B22222);
     color: white;
     transition: all 0.2s ease;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
   }
 
-  a{
-    text-decoration: none;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-    display:flex;
-  }
   .btn:hover {
     background: linear-gradient(to bottom, #FF6666, #C00000);
   }
@@ -84,38 +74,83 @@
 </head>
 <body>
 
-<div class="container">
+<div class="report-container">
   <h1>Report</h1>
   <p>Use this form to report unsafe situations or request urgent help. All reports are confidential.</p>
 
-  <form>
+  <!-- Added id="reportForm" and changed <a> to <button> -->
+  <form id="reportForm">
     <label for="reportType">Type of Report</label>
     <select id="reportType" required>
       <option value="">Select type</option>
-      <option value="physical">Physical Abuse</option>
-      <option value="emotional">Emotional Abuse</option>
-      <option value="sexual">Sexual Abuse</option>
-      <option value="unsafe">Unsafe Situation</option>
-      <option value="other">Other</option>
+      <option value="Domestic Violence">Domestic Violence</option>
+      <option value="Robbery Attempt">Robbery Attempt</option>
+      <option value="Emotional Abuse">Emotional Abuse</option>
+      <option value="Unsafe Situation">Unsafe Situation</option>
+      <option value="Other">Other</option>
     </select>
 
     <label for="location">Location (optional)</label>
     <input type="text" id="location" placeholder="Enter location or leave blank">
 
-    <label for="description">Description</label>
-    <textarea id="description" placeholder="Describe the situation..." required></textarea>
+    <label for="reportDetails">Description</label>
+    <textarea id="reportDetails" placeholder="Describe the situation..." required></textarea>
 
     <label for="urgency">Urgency Level</label>
     <select id="urgency" required>
       <option value="">Select urgency</option>
-      <option value="low">Low</option>
-      <option value="medium">Medium</option>
-      <option value="high">High</option>
+      <option value="Low">Low</option>
+      <option value="Medium">Medium</option>
+      <option value="High">High</option>
     </select>
 
-    <a href="success-screen.html" type="submit" class="btn">Send Report</a>
+    <button type="submit" class="btn">Send Report</button>
   </form>
 </div>
+
+<script>
+const reportForm = document.getElementById('reportForm');
+
+reportForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  // Get form values
+  const type = document.getElementById('reportType').value.trim();
+  const location = document.getElementById('location').value.trim();
+  const details = document.getElementById('reportDetails').value.trim();
+  const urgency = document.getElementById('urgency').value;
+
+  if(!type || !details || !urgency){
+    alert("Please fill all required fields.");
+    return;
+  }
+
+  // Create a new report object
+  const newReport = {
+    type,
+    location,
+    details,
+    urgency,
+    timestamp: new Date().getTime(),
+    status: 'Under review'
+  };
+
+  // Get existing reports from localStorage or empty array
+  const reports = JSON.parse(localStorage.getItem('reports')) || [];
+
+  // Add new report at the beginning
+  reports.unshift(newReport);
+
+  // Save updated reports back to localStorage
+  localStorage.setItem('reports', JSON.stringify(reports));
+
+  // Optional: reset form
+  reportForm.reset();
+
+  alert("Report submitted successfully!");
+  window.location.href = 'homepage.html'; // redirect back to homepage
+});
+</script>
 
 </body>
 </html>
