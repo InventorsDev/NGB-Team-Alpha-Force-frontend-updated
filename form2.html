@@ -20,51 +20,62 @@
 
   <!-- Form Section -->
   <div class="formborder">
-    <form action="log_in.html" method="get">
-      <label for="Emergency Contact Name">Emergency Contact Name</label><br />
-      <input type="text" id="emergencyContactName" name="emergencyContactName" placeholder="eg. David Stephen" required />
+    <!-- form2.html -->
+<form id="form2">
+  <label for="emergencyContactName">Emergency Contact Name</label>
+  <input type="text" id="emergencyContactName" required>
 
-      <label for="Emergency Contact">Emergency Contact</label><br />
-      <input type="number" id="emergencyContact" name="emergencyContact" placeholder="+234..." required />
+  <label for="emergencyContact">Emergency Contact</label>
+  <input type="text" id="emergencyContact" required>
 
-      <label for="password">Password</label><br />
-      <input type="password" id="password" name="password" placeholder="....." required />
+  <label for="password">Password</label>
+  <input type="password" id="password" required>
+  
+  <label for="confirm-password">Password</label>
+  <input type="password" id="confirm-password" required>
 
-      <label for="confirm-password">Confirm Password</label><br />
-      <input type="password" id="confirm-password" name="confirm-password" placeholder="...." required />
+  <button type="submit">Next</button>
+</form>
 
-      <button type="submit" class="button4">Next</button>
-    </form>
   </div>
 
   <!-- Floating Panic Button -->
   <a href="panic.html" class="panic-btn">🚨</a>
 
   <!-- Script for password validation -->
-  <script>
-    const form = document.querySelector("form");
-    const password = document.getElementById("password");
-    const confirmPassword = document.getElementById("confirm-password");
+ <script>
+const form2 = document.getElementById('form2'); // form id="form2"
+const password = document.getElementById('password');
+const confirmPassword = document.getElementById('confirm-password');
 
-    form.addEventListener("submit", (e) => {
-      if (password.value !== confirmPassword.value) {
-        e.preventDefault(); // stop form submission
-        alert("Passwords do not match!");
-      }
-      // Save user profile
- let userProfile = JSON.parse(localStorage.getItem('regStep1')) || {};
-userProfile = {
-  ...userProfile,
-  EmergencyContactName: document.getElementById('emergencyContactName').value,
-  EmergencyContact: document.getElementById('emergencyContact').value,
-  password: document.getElementById('password').value
-};
-localStorage.setItem('userProfile', JSON.stringify(userProfile)); // save as 'userProfile'
-window.location.href = 'verify.html';
+form2.addEventListener('submit', (e) => {
+  e.preventDefault();
 
+  // Check password match
+  if(password.value !== confirmPassword.value){
+    alert("Passwords do not match!");
+    return;
+  }
+
+  // Get previous data
+  const regStep1 = JSON.parse(localStorage.getItem('regStep1')) || {};
+
+  // Save second step data
+  const regStep2 = {
+    ...regStep1,
+    EmergencyContactName: document.getElementById('emergencyContactName').value.trim(),
+    EmergencyContact: document.getElementById('emergencyContact').value.trim(),
+    password: password.value.trim()
+  };
+
+  localStorage.setItem('regStep2', JSON.stringify(regStep2));
+
+  // Go to verify page
+  window.location.href = 'verify.html';
 });
+</script>
 
-  </script>
+
 
 </body>
 </html>

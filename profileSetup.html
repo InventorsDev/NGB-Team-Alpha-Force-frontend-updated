@@ -6,6 +6,7 @@
   <title>Complete Your Profile – SpeakSafe</title>
   <link rel="stylesheet" href="style.css">
 </head>
+<body>
   <div class="profile-container">
     <!-- Header Section -->
     <div class="header">
@@ -16,9 +17,7 @@
 
     <!-- Form Section -->
     <div class="formborder">
-      <!-- Use a placeholder backend endpoint -->
-      <form action="welcomeBack.html" method="get" id="profile-form">
-        
+      <form id="profile-form">
         <label for="address">Home Address</label>
         <input type="text" id="address" name="address" placeholder="eg. 12 Ikoyi Road, Lagos" required>
 
@@ -42,26 +41,33 @@
 
   <script>
     const form = document.getElementById("profile-form");
-form.addEventListener("submit", (e) => {
-  const pin = document.getElementById("pin").value;
-  if(pin.length !== 4){
-    e.preventDefault();
-    alert("Your Panic Cancel PIN must be 4 digits.");
-    return; // stop execution
-  }
 
-  // Save user profile
-  let userProfile = JSON.parse(localStorage.getItem('regStep2')) || {};
-  userProfile = {
-    ...userProfile,
-    address: document.getElementById('address').value,
-    city: document.getElementById('city').value,
-    panicPin:  document.getElementById('pin').value,
-  };
-  localStorage.setItem('userProfile', JSON.stringify(userProfile));
-  localStorage.setItem('onboardingComplete', 'true');
-  window.location.href = 'welcomeBack.html';
-});
-</script>
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      // Validate PIN
+      const pin = document.getElementById("pin").value.trim();
+      if(pin.length !== 4){
+        alert("Your Panic Cancel PIN must be 4 digits.");
+        return;
+      }
+
+      // Save user profile
+      const regStep2 = JSON.parse(localStorage.getItem('regStep2')) || {};
+
+      const userProfile = {
+        ...regStep2,
+        address: document.getElementById('address').value.trim(),
+        city: document.getElementById('city').value.trim(),
+        panicPin: pin
+      };
+
+      localStorage.setItem('userProfile', JSON.stringify(userProfile));
+      localStorage.setItem('onboardingComplete', 'true');
+
+      // Go to welcome back page
+      window.location.href = 'welcomeBack.html';
+    });
+  </script>
 </body>
 </html>

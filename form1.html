@@ -16,22 +16,21 @@
 
   <!-- Form Section -->
   <div class="formborder">
-    <form action="form2.html" method="get">
-      <label for="First Name">First Name</label><br />
-      <input type="text" id="firstName" name="firstName" placeholder="eg. John" required />
+   <form id="form1" >
+  <label for="firstName">First Name</label>
+  <input type="text" id="firstName" required>
 
-      <label for="Last Name">Last Name</label><br />
-      <input type="text" id="lastName" name="lastName" placeholder="eg. Doe" required />
+  <label for="lastName">Last Name</label>
+  <input type="text" id="lastName" required>
 
-       <label for="email">Email</label><br />
-      <input type="email" id="email" name="email" placeholder="eg john@gmail.com" required />
+  <label for="email">Email</label>
+  <input type="email" id="email" required>
 
-      <label for="Phone number">Phone number</label><br />
-      <input type="number" id="phone" name="phone" placeholder="eg. +234..." required />
+  <label for="phone">Phone</label>
+  <input type="text" id="phone" required>
 
-      <button type="submit" class="button4">Next</button>
-    </form>
-
+  <button type="submit" class="button4" >Next</button>
+</form>
     <!-- Divider -->
     <div class="divider">
       <span>or sign up with</span>
@@ -53,26 +52,26 @@
   <a href="panic.html" class="panic-btn">🚨</a>
 
 <script>
- // form1.html
-const form1 = document.querySelector('form');
+const form1 = document.getElementById('form1'); // Make sure your form has id="form1"
+
 form1.addEventListener('submit', (e) => {
   e.preventDefault();
-  
-  const userProfile = {
+
+  // Save first step data
+  const regStep1 = {
     Firstname: document.getElementById('firstName').value.trim(),
     Lastname: document.getElementById('lastName').value.trim(),
     email: document.getElementById('email').value.trim(),
     phone: document.getElementById('phone').value.trim()
   };
 
-  localStorage.setItem('regStep1', JSON.stringify(userProfile));
+  localStorage.setItem('regStep1', JSON.stringify(regStep1));
+
+  // Go to next page
   window.location.href = 'form2.html';
 });
-
 </script>
 
-
-</script>
 
 </body>
 </html>
