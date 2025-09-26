@@ -36,7 +36,9 @@
   <!-- Edit buttons -->
   <button class="profile-button" onclick="editInfo()">Edit My Information <span class="arrow">→</span></button>
   <button class="profile-button" onclick="editEmergency()">Edit Emergency Contact <span class="arrow">→</span></button>
+  <button class="profile-button" onclick="editPanicPin()">Edit Panic PIN <span class="arrow">→</span></button>
   <button class="profile-button logout-button" onclick="logout()">Log Out <span class="arrow">→</span></button>
+  
 </div>
 
 <!-- Hidden edit forms -->
@@ -67,6 +69,17 @@
     <button type="button" onclick="closeEmergencyModal()">Cancel</button>
   </form>
 </div>
+
+<div id="editPanicModal" style="display:none; background:#fff; padding:20px; border:1px solid #ccc;">
+  <h3>Edit Panic PIN</h3>
+  <form id="editPanicForm">
+    <label>New 4-digit Panic PIN</label>
+    <input type="password" id="editPanicPin" maxlength="4" required><br>
+    <button type="submit">Save</button>
+    <button type="button" onclick="closePanicModal()">Cancel</button>
+  </form>
+</div>
+
 <script>
     // Load profile dat from loacal storage
 window.addEventListener('DOMContentLoaded', () => {
@@ -124,6 +137,33 @@ document.getElementById('editEmergencyForm').addEventListener('submit', (e) => {
   userProfile.EmergencyContact = document.getElementById('editEmergencyPhone').value;
   localStorage.setItem('userProfile', JSON.stringify(userProfile));
   location.reload();
+});
+// Open Panic PIN modal
+function editPanicPin() {
+  const userProfile = JSON.parse(localStorage.getItem('userProfile')) || {};
+  document.getElementById('editPanicPin').value = userProfile.panicPin || '';
+  document.getElementById('editPanicModal').style.display = 'block';
+}
+
+// Close Panic PIN modal
+function closePanicModal() {
+  document.getElementById('editPanicModal').style.display = 'none';
+}
+
+// Save Panic PIN
+document.getElementById('editPanicForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  let userProfile = JSON.parse(localStorage.getItem('userProfile')) || {};
+  const newPin = document.getElementById('editPanicPin').value.trim();
+
+  if(newPin.length !== 4) {
+    alert("Panic PIN must be 4 digits!");
+    return;
+  }
+
+  userProfile.panicPin = newPin;
+  localStorage.setItem('userProfile', JSON.stringify(userProfile));
+  location.reload(); // Refresh to show updated PIN
 });
 
 // Log out
