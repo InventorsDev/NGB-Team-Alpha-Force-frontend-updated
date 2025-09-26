@@ -10,7 +10,7 @@
 
   <!-- Header / Greeting -->
   <div class="top-bar">
-    <img src="img/Rectangle.png" alt="Profile" class="profile-pic">
+    <img id="homeProfilePic" src="img/Rectangle.png" alt="Profile" class="profile-pic">
     <div class="greeting">
       <h2 id="homeName">Hi, User</h2>
       <p>Your protection is our priority. Always.</p>
@@ -125,6 +125,11 @@ window.addEventListener('DOMContentLoaded', () => {
     snapshotContainer.appendChild(div);
   });
 });
+const savedPic = localStorage.getItem('profilePic');
+if (savedPic) {
+  document.getElementById('homeProfilePic').src = savedPic;
+}
+
 </script>
 
 </body>

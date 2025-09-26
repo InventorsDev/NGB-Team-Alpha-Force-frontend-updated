@@ -126,43 +126,49 @@
   </div>
 
   <script>
-    const panicBtn = document.getElementById("panicBtn");
-    const panicModal = document.getElementById("panicModal");
-    const confirmAlert = document.getElementById("confirmAlert");
-    const cancelAlert = document.getElementById("cancelAlert");
-    const pinBox = document.getElementById("pinBox");
-    const pinInput = document.getElementById("pinInput");
-    const pinSubmit = document.getElementById("pinSubmit");
-    const successScreen = document.getElementById("successScreen");
-    const dashboard = document.querySelector(".dashboard");
+  const panicBtn = document.getElementById("panicBtn");
+  const panicModal = document.getElementById("panicModal");
+  const confirmAlert = document.getElementById("confirmAlert");
+  const cancelAlert = document.getElementById("cancelAlert");
+  const pinBox = document.getElementById("pinBox");
+  const pinInput = document.getElementById("pinInput");
+  const pinSubmit = document.getElementById("pinSubmit");
+  const successScreen = document.getElementById("successScreen");
+  const dashboard = document.querySelector(".dashboard");
 
-    // Open modal when panic is pressed
-    panicBtn.addEventListener("click", () => {
-      panicModal.style.display = "flex";
-    });
+  // Open modal when panic is pressed
+  panicBtn.addEventListener("click", () => {
+    panicModal.style.display = "flex";
+  });
 
-    // Confirm emergency
-    confirmAlert.addEventListener("click", () => {
+  // Confirm emergency
+  confirmAlert.addEventListener("click", () => {
+    panicModal.style.display = "none";
+    dashboard.style.display = "none";
+    successScreen.style.display = "block";
+  });
+
+  // Cancel (show PIN box)
+  cancelAlert.addEventListener("click", () => {
+    pinBox.style.display = "block";
+  });
+
+  // Validate PIN (check localStorage or fallback to 1234)
+  pinSubmit.addEventListener("click", () => {
+    const enteredPin = pinInput.value.trim();
+
+    const userProfile = JSON.parse(localStorage.getItem('userProfile'));
+    const savedPin = userProfile && userProfile.panicPin ? userProfile.panicPin : "1234"; 
+
+    if (enteredPin === savedPin) {
       panicModal.style.display = "none";
-      dashboard.style.display = "none";
-      successScreen.style.display = "block";
-    });
-
-    // Cancel (show PIN box)
-    cancelAlert.addEventListener("click", () => {
-      pinBox.style.display = "block";
-    });
-
-    // Validate PIN (MVP hardcoded as 1234)
-    pinSubmit.addEventListener("click", () => {
-      if (pinInput.value === "1234") {
-        panicModal.style.display = "none";
-        alert("Panic alert cancelled.");
-      } else {
-        alert("Incorrect PIN!");
-      }
-    });
-  </script>
+      alert("Panic alert cancelled.");
+      window.location.href = "homepage.html"; // optional redirect
+    } else {
+      alert("Incorrect PIN!");
+    }
+  });
+</script>
 
 </body>
 </html>

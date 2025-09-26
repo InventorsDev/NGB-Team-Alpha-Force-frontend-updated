@@ -19,8 +19,13 @@
 
 <div class="profile-container">
   <div class="profile-heading">Profile</div>
-  <img src="img/Rectangle.png" alt="Profile Picture" class="profile-pic">
-
+  <div class="profile-pic-container">
+  <img id="profilePic" src="img/Rectangle.png" alt="Profile Picture">
+  <input type="file" id="picUpload" accept="image/*" style="display:none;">
+  
+</div>
+<button type="button" class="change" onclick="document.getElementById('picUpload').click()">Change Picture</button>
+<br>
   <div class="profile-name" id="profileName">John Doe</div>
 
   <!-- Editable info -->
@@ -165,13 +170,33 @@ document.getElementById('editPanicForm').addEventListener('submit', (e) => {
   localStorage.setItem('userProfile', JSON.stringify(userProfile));
   location.reload(); // Refresh to show updated PIN
 });
+const profilePic = document.getElementById('profilePic');
+  const picUpload = document.getElementById('picUpload');
 
-// Log out
-// function logout() {
-//   localStorage.removeItem('userProfile');
-//   localStorage.removeItem('onboardingComplete');
-//   window.location.href = 'index.html';
-// }
+  // Load saved picture if available
+  const savedPic = localStorage.getItem('profilePic');
+  if (savedPic) {
+    profilePic.src = savedPic;
+  }
+
+  // Handle new upload
+  picUpload.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        const imageData = event.target.result;
+
+        // Save to localStorage
+        localStorage.setItem('profilePic', imageData);
+
+        // Update UI
+        profilePic.src = imageData;
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
 
 // Log out
 function logout() {
