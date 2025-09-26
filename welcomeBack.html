@@ -41,7 +41,7 @@
 <a href="panic.html" class="panic-btn">🚨</a>
 
    
-<script>
+<!-- <script>
 const loginForm = document.getElementById('login-form'); // match the HTML id
 
 loginForm.addEventListener('submit', (e) => {
@@ -53,6 +53,29 @@ loginForm.addEventListener('submit', (e) => {
 
   if(storedUser && storedUser.email === email && storedUser.password === password){
     // Login success
+    localStorage.setItem('isLoggedIn', 'true');
+
+    window.location.href = 'homepage.html';
+  } else {
+    alert('Incorrect email or password');
+  }
+});
+</script> -->
+<script>
+const loginForm = document.getElementById('login-form'); // match the HTML id
+
+loginForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const storedUser = JSON.parse(localStorage.getItem('userProfile'));
+  const email = document.getElementById('Email').value.trim();
+  const password = document.getElementById('password').value.trim();
+
+  if(storedUser && storedUser.email === email && storedUser.password === password){
+    // ✅ Login success
+    localStorage.setItem('isLoggedIn', 'true');
+
+    // move to homepage
     window.location.href = 'homepage.html';
   } else {
     alert('Incorrect email or password');

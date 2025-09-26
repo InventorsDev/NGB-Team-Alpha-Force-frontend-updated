@@ -167,11 +167,23 @@ document.getElementById('editPanicForm').addEventListener('submit', (e) => {
 });
 
 // Log out
+// function logout() {
+//   localStorage.removeItem('userProfile');
+//   localStorage.removeItem('onboardingComplete');
+//   window.location.href = 'index.html';
+// }
+
+// Log out
 function logout() {
-  localStorage.removeItem('userProfile');
-  localStorage.removeItem('onboardingComplete');
+  // Instead of deleting the user profile, just mark as logged out
+  localStorage.setItem('isLoggedIn', 'false'); 
+
+  // Optional: you can also clear session-only things
+  // sessionStorage.clear();
+
   window.location.href = 'index.html';
 }
+
 </script>
 </body>
 </html>

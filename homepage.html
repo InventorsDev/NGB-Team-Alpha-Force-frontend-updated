@@ -78,43 +78,54 @@
   </div>
 
 
-  <script>
+ <script>
 window.addEventListener('DOMContentLoaded', () => {
+  // ✅ Check login status first
+  const isLoggedIn = localStorage.getItem('isLoggedIn');
+  if(isLoggedIn !== 'true'){
+    // Not logged in → kick back to welcome page
+    window.location.href = 'welcomeBack.html';
+    return;
+  }
+
+  // ✅ Load profile data
   const userProfile = JSON.parse(localStorage.getItem('userProfile'));
   if(userProfile){
     document.getElementById('homeName').innerText = `Hi ${userProfile.Firstname} ${userProfile.Lastname},`;
   }
+
+  // ✅ Reports snapshot
+  function formatTimeAgo(timestamp){
+    const now = new Date().getTime();
+    const diff = now - timestamp;
+
+    const minutes = Math.floor(diff / 60000);
+    if(minutes < 60) return `${minutes} minute(s) ago`;
+
+    const hours = Math.floor(minutes / 60);
+    if(hours < 24) return `${hours} hour(s) ago`;
+
+    const days = Math.floor(hours / 24);
+    return `${days} day(s) ago`;
+  }
+
+  const snapshotContainer = document.getElementById('reportSnapshotContainer');
+  const allReports = JSON.parse(localStorage.getItem('reports')) || [];
+
+  // Show latest 2 reports
+  const latestReports = allReports.slice(0,2);
+
+  latestReports.forEach(report => {
+    const div = document.createElement('div');
+    div.classList.add('report-card');
+    div.innerHTML = `
+      <p><strong>${report.type}</strong><br>${formatTimeAgo(report.timestamp)}</p>
+      <span class="status">${report.status}</span>
+    `;
+    snapshotContainer.appendChild(div);
+  });
 });
+</script>
 
-function formatTimeAgo(timestamp){
-  const now = new Date().getTime();
-  const diff = now - timestamp;
-
-  const minutes = Math.floor(diff / 60000);
-  if(minutes < 60) return `${minutes} minute(s) ago`;
-
-  const hours = Math.floor(minutes / 60);
-  if(hours < 24) return `${hours} hour(s) ago`;
-
-  const days = Math.floor(hours / 24);
-  return `${days} day(s) ago`;
-}
-
-// Populate snapshot
-const snapshotContainer = document.getElementById('reportSnapshotContainer');
-const allReports = JSON.parse(localStorage.getItem('reports')) || [];
-
-// Show latest 2 reports
-const latestReports = allReports.slice(0,2);
-
-latestReports.forEach(report => {
-  const div = document.createElement('div');
-  div.classList.add('report-card');
-  div.innerHTML = `<p><strong>${report.type}</strong><br>${formatTimeAgo(report.timestamp)}</p>
-                   <span class="status">${report.status}</span>`;
-  snapshotContainer.appendChild(div);
-});
-
-  </script>
 </body>
 </html>
