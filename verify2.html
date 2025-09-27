@@ -1,36 +1,108 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Verify 2 Email</title>
+  <title>Verify Email</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Montserrat, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* center content horizontally */
+    }
+
+    .top {
+      width: 100%;
+      padding: 10px;
+    }
+
+    .back {
+      font-size: 24px;
+      text-decoration: none;
+    }
+
+    .header {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .head {
+      width: 100px;
+    }
+
+    .otp-box {
+      display: flex;
+      justify-content: center;  /* keep OTP in center */
+      align-items: center;
+      gap: 12px;                /* spacing between circles */
+      margin: 20px 0;
+    }
+
+    .otp-box input {
+      width: 50px;
+      height: 50px;
+      border: 2px solid #007bff;
+      border-radius: 50%;       /* makes input circular */
+      text-align: center;
+      font-size: 20px;
+      outline: none;
+    }
+
+    .button4 {
+      display: inline-block;
+      margin: 20px 0;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    .DONT {
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .panic-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      font-size: 24px;
+      text-decoration: none;
+    }
+  </style>
 </head>
-<body style="background-color: rgba(187, 216, 244, 0.475);">
-     <header class="top">
-  <a href="form1.html" class="back">&#10094;</a>
-</header>
+<body>
+  <header class="top">
+    <a href="form1.html" class="back">&#10094;</a>
+  </header>
+
   <div class="header">
     <img src="img/LOGO.png" class="head">
     <p id="otp-text"></p>
   </div>
-  <p class="DONT"> Default otp: 1234</p>
+
+  <p class="DONT">Default otp: 1234</p>
+
   <div class="otp-box">
     <input type="text" maxlength="1" inputmode="numeric" class="otp-input">
     <input type="text" maxlength="1" inputmode="numeric" class="otp-input">
     <input type="text" maxlength="1" inputmode="numeric" class="otp-input">
-    <input type="text" maxlength="1" inputmode="numeric"class="otp-input">
+    <input type="text" maxlength="1" inputmode="numeric" class="otp-input">
   </div>
 
-  <a href="forgetPassword.html" class="button4" type="submit">Verify</a>
+  <a href="success card.html" class="button4" type="submit">Verify</a>
 
-    <p class="DONT">didn't receive OTP? <br> <a href="verify2.html" class="DONT">Resend OTP</a></p>
+  <p class="DONT">didn't receive OTP? <br> <a href="verify.html" class="DONT">Resend OTP</a></p>
 
   <!-- Floating Panic Button -->
-<a href="panic.html" class="panic-btn">🚨</a>
+  <a href="panic.html" class="panic-btn">🚨</a>
+
   <script>
     // get query params
     const params = new URLSearchParams(window.location.search);
@@ -44,23 +116,23 @@
     } else {
       document.getElementById("otp-text").innerText =
         "No email provided!";
-    };
+    }
 
     const inputs = document.querySelectorAll(".otp-input");
 
-inputs.forEach((input, index) => {
-  input.addEventListener("input", () => {
-    if (input.value.length === 1 && index < inputs.length - 1) {
-      inputs[index + 1].focus();  // move to next
-    }
-  });
+    inputs.forEach((input, index) => {
+      input.addEventListener("input", () => {
+        if (input.value.length === 1 && index < inputs.length - 1) {
+          inputs[index + 1].focus();  // move to next
+        }
+      });
 
-  input.addEventListener("keydown", (e) => {
-    if (e.key === "Backspace" && index > 0 && !input.value) {
-      inputs[index - 1].focus();  // move back if deleting
-    }
-  });
-});
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Backspace" && index > 0 && !input.value) {
+          inputs[index - 1].focus();  // move back if deleting
+        }
+      });
+    });
   </script>
 </body>
 </html>
