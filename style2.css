@@ -69,6 +69,10 @@ body {
   
   cursor: pointer;
 }
+.action-card {
+  cursor: pointer;
+  user-select: none; /* prevents text highlighting */
+}
 
 /* Panic Button */
 .panic-section {
