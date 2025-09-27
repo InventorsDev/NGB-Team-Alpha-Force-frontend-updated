@@ -141,14 +141,20 @@ body {
   margin: 20px auto;
   padding-top: 20px;
 }
+.formborder {
+  padding-left: 20px;
+  padding-right: 20px; /* equal padding so inputs & button align */
+  box-sizing: border-box;
+}
 
 input {
-  width: 100%;
+  width: 100%; 
   padding: 10px;
   border-radius: 5px;
   margin: 10px 0;
   border: 1px solid #ccc;
   font-family: Montserrat;
+  box-sizing: border-box; /* makes padding fit inside width */
 }
 
 label {
@@ -171,6 +177,21 @@ label {
   margin: 20px auto;
   font-family: Montserrat;
 }
+/* .formbutton{
+  background-color: #2563EB;
+  color: white;
+  border: none;
+  padding: 12px;
+  text-align: center;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  width: 100%; /* same as input fields */
+  /* margin: 20px 0; only vertical margin so it stays aligned */
+  /* font-family: Montserrat;
+  box-sizing: border-box;
+
+} */ */
 .otp-box {
   display: flex;
   justify-content: center;  /* center on screen */
