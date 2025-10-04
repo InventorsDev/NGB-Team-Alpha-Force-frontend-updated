@@ -35,7 +35,6 @@ SafeResQ provides a mobile-first experience that allows users to:
   - Footer navigation bar (Home, Resources, Report, Profile)  
 
 - 🚨 **Panic Mode**  
-  - Floating panic button on all pages  
   - Confirmation modal: “Are you in danger?”  
   - Cancel with PIN, or send alert  
   - “Help is on the way” placeholder screen (backend integration planned)  
@@ -96,7 +95,7 @@ SafeResQ provides a mobile-first experience that allows users to:
 ## 🚀 Setup Instructions  
 
 ### 🔗 Live View  
-👉 [SafeResQ Live Demo]( https://inventorsdev.github.io/NGB-Team-Alpha-Force-frontend-updated/)  
+👉 [SafeResQ Live Demo]( https://inventorsdev.github.io/NGB-Team-Alpha-Force-frontend-updated/ )  
 
 ### 💻 Local Setup  
 1. Download this repository as a ZIP file.  
